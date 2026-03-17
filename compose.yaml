@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+
+  backend:
+    build: ./backend
+    container_name: back
+    ports:
+      - "5000:5000"
+    networks:
+      - two-tier
+
+  frontend:
+    build: ./frontend
+    container_name: front
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - two-tier
+
+networks:
+  two-tier:
+    driver: bridge
+~
